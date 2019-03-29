@@ -1,3 +1,4 @@
 *.ppyc
 *.swp
 *.sqlite3
+*.xml
