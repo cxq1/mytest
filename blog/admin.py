@@ -75,7 +75,7 @@ class PostAdmin(admin.ModelAdmin):
             'description': '基础配置描述',
             'fields': (
                 ('title', 'category'),
-                'status',
+                'status','owner'
             ),
         }),
         ('内容', {
