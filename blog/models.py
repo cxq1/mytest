@@ -110,4 +110,4 @@ class Post(models.Model):
 
     @classmethod
     def latest_post(cls):
-        queryset=cls.objects.filter(status=cls.STATUS_NORMAL)
+        return cls.objects.filter(status=cls.STATUS_NORMAL)
