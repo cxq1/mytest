@@ -9,7 +9,7 @@
     <h1>{{ post.title }}</h1>
     <div>
     <span>分类:{{ post.category.name }}</span>
-    <span>作者:{{ post.category.username }}</span>
+    <span><a href="{% url 'author' post.category.owner.id %}">作者:{{ post.category.owner }}</a> </span>
     </div>
     <hr>
     <p>

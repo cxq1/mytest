@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% block title %}友情链接{% endblock %}
+
+{% block main %}
+    <table class="table">
+    <thead>
+    <tr>
+        <td scope="col">#</td>
+        <td scope="col">名称</td>
+        <td scope="col">网址</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for link in link_list %}
+        <td scope="row">{{ forloop.counter }}</td>
+        <td>{{ link.title }}</td>
+        <td><a href="{{ link.href }}">{{ link.href }}</a> </td>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
