@@ -1,6 +1,10 @@
+import mistune
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+from django.utils.functional import cached_property
+
+
 class Category(models.Model):
     STATUS_NORMAL=1
     STATUS_DELETE=0
@@ -54,6 +58,8 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class Post(models.Model):
     STATUS_NORMAL=1
     STATUS_DELETE=0
@@ -71,6 +77,15 @@ class Post(models.Model):
     tag = models.ManyToManyField(Tag,verbose_name='标签')
     owner = models.ForeignKey(User,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
+    content_html = models.TextField(verbose_name='正文HTML代码',blank=True,editable=True)
+
+    @cached_property
+    def tags(self):
+        return ','.join(self.tag.values_list('name',flat=True))
+
+    def save(self,*args,**kwargs):
+        self.content_html = mistune.markdown(self.content)
+        super().save(*args,**kwargs)
 
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)

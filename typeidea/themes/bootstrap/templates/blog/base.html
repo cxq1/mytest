@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 {% load static %}
     <meta charset="UTF-8">
@@ -12,6 +13,7 @@
         margin-bottom: 5px;
     }
 </style>
+{% block extra_head %}{% endblock %}
 </head>
 <body>
 <div class="container head">
@@ -20,11 +22,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {% for cate in navs %}
-                    <li class="nav-item"><a href="/category/{{ cate.id }}/">{{ cate.name }}</a></li>
+                    <li class="nav-item"><a href="/category/{{ cate.id }}/">{{ cate.name }}</a></li>&nbsp;&nbsp;
                 {% endfor %}
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="/search/" method="get">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{ keyword }}">
                 <button class="btn btn-outline-success" type="submit">搜索</button>
             </form>
         </div>
