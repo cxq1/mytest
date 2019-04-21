@@ -9,11 +9,14 @@
     <h1>{{ post.title }}</h1>
     <div>
     <span>分类:{{ post.category.name }}</span>
-    <span><a href="{% url 'author' post.category.owner.id %}">作者:{{ post.category.owner }}</a> </span>
+    <span>作者:<a href="{% url 'author' post.category.owner.id %}">{{ post.category.owner }}</a> &nbsp;阅读数量:{{ post.pv }}</span>
     </div>
     <hr>
     <p>
+    {% autoescape off %}
     {{ post.content }}
+    {% endautoescape %}
     </p>
     {% endif %}
+
 {% endblock %}

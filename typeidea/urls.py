@@ -23,6 +23,7 @@ from blog.views import (
     PostDetailView,SearchView,AuthorView
 )
 from config.views import LinkListView
+from comment.views import CommentView
 
 urlpatterns = [
     url(r'^$',IndexView.as_view(),name='index'),
@@ -34,4 +35,5 @@ urlpatterns = [
     url(r'^super_admin/',admin.site.urls),
     url(r'^admin/', custom_site.urls),
     url(r'^links/$',LinkListView.as_view(),name='links'),
+    url(r'^comment/$',CommentView.as_view(),name='comment'),
 ]
