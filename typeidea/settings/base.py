@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'blog',
     'config',
     'comment',
+    'xadmin',
+    'dal_select2',
     'typeidea.themes.bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'dal',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +134,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'themes',THEME,'static')
 ]
+
+XADMIN_TITLE ='Typeidea后台'
+XADMIN_FOOTER_TITLE='power by cxq'
+
+CKEDITOR_CONFIGS={
+    'default':{
+        'toolbar':'full',
+        'height':300,
+        'width':800,
+        'tabSpaces':4,
+        'extraPlugins':'codesnippet',
+    }
+}
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+CKEDITOR_UPLOAD_PATH="article_images"
+
+DEFAULT_FILE_STORAGE='typeidea.storage.WatermarkStorage'

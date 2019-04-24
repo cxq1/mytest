@@ -78,13 +78,17 @@ class Post(models.Model):
     owner = models.ForeignKey(User,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     content_html = models.TextField(verbose_name='正文HTML代码',blank=True,editable=True)
+    is_md = models.BooleanField(default=False,verbose_name='markdown语法')
 
     @cached_property
     def tags(self):
         return ','.join(self.tag.values_list('name',flat=True))
 
     def save(self,*args,**kwargs):
-        self.content_html = mistune.markdown(self.content)
+        if self.is_md:
+            self.content_html = mistune.markdown(self.content)
+        else:
+            self.content_html = self.content
         super().save(*args,**kwargs)
 
     pv = models.PositiveIntegerField(default=1)
