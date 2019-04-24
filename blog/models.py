@@ -1,6 +1,6 @@
 import mistune
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import UserInfo
 # Create your models here.
 class Category(models.Model):
     STATUS_NORMAL=1
@@ -13,7 +13,7 @@ class Category(models.Model):
     status=models.PositiveIntegerField(default=STATUS_NORMAL,
         choices=STATUS_ITEMS,verbose_name='状态')
     is_nav = models.BooleanField(default=False,verbose_name='是否为导航')
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(UserInfo,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
 
     class Meta:
@@ -48,7 +48,7 @@ class Tag(models.Model):
     name=models.CharField(max_length=50,verbose_name='名称')
     status= models.PositiveIntegerField(default=STATUS_NORMAL,
         choices=STATUS_ITEMS,verbose_name='状态')
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(UserInfo,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     class Meta:
         verbose_name_plural = verbose_name = '标签'
@@ -70,7 +70,7 @@ class Post(models.Model):
         choices=STATUS_ITEMS,verbose_name='状态')
     category = models.ForeignKey(Category,verbose_name='分类')
     tag = models.ManyToManyField(Tag,verbose_name='标签')
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(UserInfo,verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     content_html = models.TextField(verbose_name='正文html',blank=True)
 

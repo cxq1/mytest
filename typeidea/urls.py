@@ -24,6 +24,8 @@ from blog.views import (
 )
 from config.views import LinkListView
 from comment.views import CommentView
+from user.views import login,registerView
+
 
 urlpatterns = [
     url(r'^$',IndexView.as_view(),name='index'),
@@ -36,4 +38,6 @@ urlpatterns = [
     url(r'^admin/', custom_site.urls),
     url(r'^links/$',LinkListView.as_view(),name='links'),
     url(r'^comment/$',CommentView.as_view(),name='comment'),
+    url(r'^login/$',login.as_view(),name='login'),
+    url(r'^register/$',registerView.as_view(),name='register'),
 ]

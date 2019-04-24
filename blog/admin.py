@@ -53,7 +53,8 @@ class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
     list_display = [
         'title','category','status',
-        'created_time','operator'
+        'created_time','operator',
+        'owner',
     ]
     list_display_links = []
 
@@ -82,11 +83,13 @@ class PostAdmin(admin.ModelAdmin):
             'fields': (
                 'desc',
                 'content',
+                'owner'
             ),
         }),
         ('额外信息', {
             'classes': ('wide',),
             'fields': ('tag',),
+
         })
     )
     #filter_vertical = ('tag',)

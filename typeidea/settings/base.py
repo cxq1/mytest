@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog',
     'config',
     'comment',
+    'user',
     'typeidea.themes.bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,3 +129,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'themes',THEME,'static')
 ]
+
+AUTH_USER_MODEL = 'user.UserInfo'
