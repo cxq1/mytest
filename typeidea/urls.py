@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+
+from comment.views import CommentView
 from .custom_site import custom_site
 
 from blog.views import post_list,post_detail
@@ -34,4 +36,5 @@ urlpatterns = [
     url(r'^super_admin/',admin.site.urls),
     url(r'^admin/', custom_site.urls),
     url(r'^links/$',LinkListView.as_view(),name='links'),
+    url(r'^comment/$',CommentView.as_view(),name="comment"),
 ]

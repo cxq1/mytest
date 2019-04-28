@@ -1,9 +1,14 @@
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.views.generic import ListView,DetailView
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+
+from comment.models import Comment
 from .models import Category,Post,Tag
 from config.models import *
+from comment.forms import CommentForm
+
 
 class CommonViewMixin:
     def get_context_data(self,**kwargs):
@@ -77,6 +82,18 @@ class PostDetailView(CommonViewMixin,DetailView):
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        post_content_type = ContentType.objects.get_for_model(self.get_object())
+        print(self.get_object().owner_id)
+        context.update({
+            'commont_form':CommentForm(initial={'content_type':post_content_type.model,'object_id':self.get_object().id}),
+            'commont_list' :Comment.get_comments(post_content_type,self.get_object().id)
+        })
+
+        return context
 def post_list(request, category_id=None, tag_id=None):
     tag=None
     category=None

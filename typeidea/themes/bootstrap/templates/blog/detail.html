@@ -15,5 +15,19 @@
     <p>
     {{ post.content }}
     </p>
+
+
     {% endif %}
+
+    <form action="/comment/" method="post">
+    {% csrf_token %}
+         {% for field in commont_form %}
+             {{ field }}
+          {% endfor %}
+    <input type="submit">
+    </form>
+
+    {% for comment in commont_list %}
+        {{ comment.content }}
+    {% endfor %}
 {% endblock %}

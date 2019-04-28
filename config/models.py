@@ -17,7 +17,7 @@ class Link(models.Model):
     weight = models.PositiveIntegerField(default=1,choices=zip(range(1,6),
                                             range(1,6)),verbose_name='权重',
                                          help_text='权重高的 排前面  ')
-    owner = models.ForeignKey(User,verbose_name='作者')
+    owner = models.ForeignKey(User,verbose_name='作者',on_delete=models.CASCADE)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     class Meta:
         verbose_name_plural =verbose_name = "友链"
@@ -51,7 +51,7 @@ class SideBar(models.Model):
     content = models.CharField(max_length=500,blank=True,verbose_name='内容',
                                 help_text='如果不是html ,可以为空')
     status = models.PositiveIntegerField(default=STATUS_NORMAL,choices=STATUS_ITEMS,verbose_name='状态')
-    owner = models.ForeignKey(User, verbose_name='作者')
+    owner = models.ForeignKey(User, verbose_name='作者',on_delete=models.CASCADE)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     class Meta:
