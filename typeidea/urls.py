@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
+
+from typeidea import settings
 from .custom_site import custom_site
 
 from blog.views import post_list,post_detail
@@ -37,3 +39,9 @@ urlpatterns = [
     url(r'^links/$',LinkListView.as_view(),name='links'),
     url(r'^comment/$',CommentView.as_view(),name='comment'),
 ]
+
+if settings.develop.DEBUG:
+    import debug_toolbar
+    urlpatterns=[
+        url(r'^__debug__/',include(debug_toolbar.urls)),
+    ]+urlpatterns

@@ -111,8 +111,11 @@ class Post(models.Model):
         return category,post_list
 
     @classmethod
-    def latest_post(cls):
-        return cls.objects.filter(status=cls.STATUS_NORMAL)
+    def latest_post(cls,wiith_related=True):
+        queryset =cls.objects.filter(status=cls.STATUS_NORMAL)
+        if wiith_related:
+            queryset = queryset.select_related('owner','category')
+        return queryset
 
     def save(self,*args,**kwargs):
         self.content_html = mistune.markdown(self.content)

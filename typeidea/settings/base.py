@@ -27,7 +27,7 @@ SECRET_KEY = 'k^x#bxwl+j6fwkzgs)nb=*4*wz4=jxwi(ba#^2v4ycbz*eq9$r'
 
 ALLOWED_HOSTS = []
 
-
+DEBUG =True
 # Application definition
 
 INSTALLED_APPS = [
