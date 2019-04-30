@@ -82,6 +82,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': (
                 'desc',
                 'content',
+                'owner',
             ),
         }),
         ('额外信息', {
